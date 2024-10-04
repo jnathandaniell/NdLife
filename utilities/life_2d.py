@@ -7,7 +7,9 @@ from time import sleep
 @dataclass
 class LifeSpace():
     """Space for the 2D Conway's Game of Life."""
-
+    ###########################################
+    ##### Generate default space and init #####
+    ###########################################
     rng = np.random.default_rng()
     dim_1 = rng.integers(1, 20, size=1, endpoint=True)[0]
     dim_2 = rng.integers(1, 20, size=1, endpoint=True)[0]
@@ -29,6 +31,9 @@ class LifeSpace():
                          for j in range(self.dims[1])]
         self.hist = [self.space]
 
+    #######################################
+    ##### Index validity and wrapping #####
+    #######################################
     def check_valid_index(self, index):
         """Checks if an index location is valid."""
         # If any dimensional index is less than 0, return False.
@@ -58,6 +63,9 @@ class LifeSpace():
         return tuple(self.wrap_switch(n, d)
                      for n, d, in zip(index, self.dims))
 
+    ###############################
+    ##### Neighbor collection #####
+    ###############################
     def get_neighbors(self, index):
         """Gets the neighbor indices of a cell."""
         # Get ranges of each dimension.
@@ -76,6 +84,9 @@ class LifeSpace():
         """Gets the nnumber of live neighbors for a cell based on neighbors."""
         return sum([self.space[neighbor] for neighbor in neighbors])
 
+    ####################
+    ##### Updating #####
+    ####################
     def check_live(self, live, n_count):
         """Checks if a cell is alive after this step."""
         # If the cell is alive, kill it if it does not have 2 or 3 neighbors.
