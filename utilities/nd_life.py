@@ -154,7 +154,7 @@ class Grid():
     
     def execute(self) -> ndarray:
         """
-        Executes a step.
+        Executes a step without wrapping.
         """
         # Set up operation.
         self.pad_grid()
@@ -184,4 +184,12 @@ class Grid():
             new_grid[index] = self.check_life(self.windows[index])
         self.grid = new_grid
         return new_grid
+    
+    def step(self) -> ndarray:
+        """
+        Executes a step.
+        """
+        if self.wrap:
+            return self.execute_wrapped()
+        return self.execute()
 
