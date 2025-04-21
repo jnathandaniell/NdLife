@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Class and function support for N-dimensional grids for Conway's Game of Life.
+"""
+
+
 from numpy import ndarray, zeros, s_, sum
 from numpy.random import default_rng
 from numpy.lib.stride_tricks import sliding_window_view

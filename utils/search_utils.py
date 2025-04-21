@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+General search utilities for finding repeating structures and periods in
+    Conway's Game of Life for multi-dimensional analysis.
+"""
+
 
 from numpy import array, prod, ndarray
 from itertools import product
@@ -13,7 +21,6 @@ def generate_bin_arrays(dims: tuple) -> tuple:
     for vals in product([0, 1], repeat=prod(dims)): # type: ignore
         arrays.append(array(vals).reshape(dims))
     return tuple(arrays)
-
 
 def check_repeat(actual: ndarray, hist: tuple) -> int:
     """
