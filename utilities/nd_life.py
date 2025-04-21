@@ -10,6 +10,27 @@ high = 1/2
 
 
 class Grid():
+    """
+    Grid class for generalized N-dimensional Conway's Game of Life.
+
+    Follows the rules of Conway's Game of Life using approximate neighbor
+    binning to support automatic runs in higher dimensional space.
+
+    After generation, execute steps using the '.execute()' or
+    '.wrapped_execute()' functions for cases when onde desires the grid to
+    wrap around both sides.
+
+    Execution handled by the 'sliding_window_view()' function from numpy's
+    lib.stride_tricks module to generate many neighbor views, then accessed
+    by index to generate a new array (should be more efficient than general
+    element-wise operations).
+
+    **kwargs:
+        grid (numpy.ndarray): A user-provided initial grid space.
+        wrap (bool): Default for whether the grid is 'wrapped' or not.
+        rate (float): Default chance for a cell to be live for an automatically
+            generated grid.
+    """
 
     def __init__(self, dims: tuple, **kwargs) -> None:
         self.dims = dims
